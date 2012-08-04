@@ -174,8 +174,7 @@ class Morlet(Cwt):
     def wf(self, s_omega):
         H= NP.ones(len(s_omega))
         n=len(s_omega)
-        for i in range(len(s_omega)):
-            if s_omega[i] < 0.0: H[i]=0.0
+        H[s_omega < 0.0] = 0.0
         # !!!! note : was s_omega/8 before 17/6/03
         xhat=0.75112554*( NP.exp(-(s_omega-self._omega0)**2/2.0))*H
         return xhat
@@ -189,8 +188,7 @@ class MorletReal(Cwt):
     def wf(self, s_omega):
         H= NP.ones(len(s_omega))
         n=len(s_omega)
-        for i in range(len(s_omega)):
-            if s_omega[i] < 0.0: H[i]=0.0
+        H[s_omega < 0.0] = 0.0
         # !!!! note : was s_omega/8 before 17/6/03
         xhat=0.75112554*( NP.exp(-(s_omega-self._omega0)**2/2.0)+ NP.exp(-(s_omega+self._omega0)**2/2.0)- NP.exp(-(self._omega0)**2/2.0)+ NP.exp(-(self._omega0)**2/2.0))
         return xhat
